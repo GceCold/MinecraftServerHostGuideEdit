@@ -6,8 +6,6 @@ MSI安装包安装：[点我转跳](#MSI安装板)
 
 `mongo.config`详解:[点击跳转](#mongoconfig详解)
 
-------------
-
 ## 免安装版
 1. 先到官网：[https://www.mongodb.com/download-center/community](https://www.mongodb.com/download-center/community "https://www.mongodb.com/download-center/community")
  ![](images/mongodb/download.png "官网下载")
