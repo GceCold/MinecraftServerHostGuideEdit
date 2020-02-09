@@ -50,10 +50,10 @@ pause
 #### 3. 回收算法
 Java中有四种不同的回收算法，对应的启动参数为
 
-  -XX:+UseSerialGC  设置串行收集器
-	-XX:+UseParallelGC  设置并行收集器
-	-XX:+UseParalledlOldGC  设置并行年老代收集器
-	-XX:+UseConcMarkSweepGC 设置并发收集器
+    -XX:+UseSerialGC	设置串行收集器
+	-XX:+UseParallelGC	设置并行收集器
+	-XX:+UseParalledlOldGC	设置并行年老代收集器
+	-XX:+UseConcMarkSweepGC	设置并发收集器
 
 下面涉及很多概念，如果不想看可以直接跳过看推荐使用
 > 1. Serial Collector(串行收集器)
