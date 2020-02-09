@@ -3,7 +3,9 @@
 作者建议使用免安装版（快捷方便）
 
 MSI安装包安装：[点我转跳](#MSI安装板)
-`mongo.config`详解:[点击跳转](#mongo.config详解)
+
+`mongo.config`详解:[点击跳转](#mongoconfig详解)
+
 ------------
 
 ## 免安装版
@@ -17,8 +19,10 @@ MSI安装包安装：[点我转跳](#MSI安装板)
 
 3. 创建"/data" 和 "/log" 两个文件夹（"/data"文件夹下，用于存放数据库数据；"/log"文件夹下，用于存放日志）
 	1. 在data文件夹下创建"/db"空文件夹
+	
 	![](images/mongodb/10.png)
 	2. 在log文件夹下创建"mongo.log"空文件
+	
 	![](images/mongodb/11.png)
 
 `data`和`log`两个文件夹的位置可以随意，不必须放在MongoDB程序的目录下，后面将在配置文件内设置，我这里就为了方便就放在一起了
@@ -47,7 +51,7 @@ port = 27017
 # 是否以安全认证方式运行，默认是不认证的非安全方式
 auth = true
 ```
-“mongo.config”详解:[点击跳转](#mongo.config详解)
+“mongo.config”详解:[点击跳转](#mongoconfig详解)
 
 7. 请以管理员身份运行cmd或者PowerShell
 注意：如果跳过了步骤4，请使用cd命令转跳到MongoDB的bin目录下
