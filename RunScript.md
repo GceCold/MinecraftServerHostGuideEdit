@@ -110,9 +110,9 @@ JDK5.0以后,JVM可以根据当前系统配置进行判断
 |-XX:+UseFastAccessorMethods|原始类型的快速优化|
 
 <span id="jump"></span>
-<font size="15px" color="red">注意：-Xmx8g -Xms8g -Xmn2g 等请自行根据实际服务器配置进行设置 </font>
-### -Xmn设置为-Xmx值大小的四分之一到二分之一之间
-### 不要忘记改最后的“核心名.jar”! 不要忘记改最后的“核心名.jar”! 不要忘记改最后的“核心名.jar”!
+<font size="25px" color="Crimson">注意：-Xmx8g -Xms8g -Xmn2g 等请自行根据实际服务器配置进行设置 </font>
+<font size="15px" color="Crimson">-Xmn设置为-Xmx值大小的四分之一到二分之一之间</font>
+<font size="20px" color="Crimson">不要忘记改最后的“核心名.jar”! 不要忘记改最后的“核心名.jar”! 不要忘记改最后的“核心名.jar”!</font>
 最后我们的启动参数就变成了这样↓（纯净服推荐脚本）
 ```bash
 @ECHO OFF
