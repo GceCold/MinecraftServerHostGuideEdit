@@ -1,6 +1,7 @@
 # 第一节 认识启动脚本
 
   Minecraft开服离不开启动脚本（不建议使用开服器）(作者使用jdk1.8.0_171 x64测试)
+###   配置好的开服脚本:[点击跳转](#jump)
   ```bash
 @ECHO OFF
 java -jar spigot-1.8.8-R0.1-SNAPSHOT-latest.jar
@@ -13,6 +14,7 @@ pause
 > - 非标准参数（-X）：默认jvm实现这些参数的功能，但是并不保证所有jvm实现都满足，且不保证向后兼容；
 > - 非Stable参数（-XX）：此类参数各个jvm实现会有所不同，将来可能会随时取消，需要慎重使用；
 
+例：上面的"-jar"就属于标准参数
 
 #### 1. 标准参数
 |参数|说明|
@@ -107,7 +109,9 @@ JDK5.0以后,JVM可以根据当前系统配置进行判断
 |-XX:-DisableExplicitGC|禁止调用System.gc()，但jvm的gc仍然有效|
 |-XX:+UseFastAccessorMethods|原始类型的快速优化|
 
-最后我们的启动参数就变成了这样↓
+<span id="jump">脚本</span>
+## 注意：-Xmx8g -Xms8g -Xss512k -Xmn2g 等请自行根据实际服务器配置进行设置
+最后我们的启动参数就变成了这样↓（纯净服推荐脚本）
 ```bash
 @ECHO OFF
 java -server -Xincgc -Xmx8g -Xms4g -Xss512k -Xmn2g -Xincgc -XX:+AggressiveOpts -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:+UseFastAccessorMethods -XX:CMSFullGCsBeforeCompaction=5 -XX:ParallelGCThreads=8 -XX:CMSInitiatingOccupancyFraction=70 -XX:-DisableExplicitGC -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:SurvivorRatio=1 -jar 核心名.jar
@@ -131,7 +135,7 @@ cls
 goto start
 pause
 ```
-## 注意：-Xmx8g -Xms8g -Xss512k -Xmn2g -XX:CMSInitiatingOccupancyFraction=70等请自行根据实际服务器配置进行设置
+
 
 
 本文部分来自：[https://www.oracle.com/technetwork/java/hotspotfaq-138619.html](https://www.oracle.com/technetwork/java/hotspotfaq-138619.html "https://www.oracle.com/technetwork/java/hotspotfaq-138619.html")
