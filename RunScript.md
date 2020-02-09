@@ -109,7 +109,7 @@ JDK5.0以后,JVM可以根据当前系统配置进行判断
 |-XX:-DisableExplicitGC|禁止调用System.gc()，但jvm的gc仍然有效|
 |-XX:+UseFastAccessorMethods|原始类型的快速优化|
 
-<span id="jump">脚本</span>
+<span id="jump"></span>
 ## 注意：-Xmx8g -Xms8g -Xss512k -Xmn2g 等请自行根据实际服务器配置进行设置
 最后我们的启动参数就变成了这样↓（纯净服推荐脚本）
 ```bash
