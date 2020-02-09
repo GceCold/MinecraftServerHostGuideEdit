@@ -102,6 +102,9 @@ net start MongoDB
 5. Next之后，MongoDB就开始安装了，等待安装成功即可
 ![](https://github.com/Mhy278/MinecraftServerHostGuide/blob/master/images/mongodb/6.png?raw=true)
 
+打开浏览器输入`127.0.0.1:27017`
+![](https://github.com/Mhy278/MinecraftServerHostGuide/blob/master/images/mongodb/15.png?raw=true)
+看到这个页面你的MongoDB就成功运行了，可以使用客户端操作MongoDB了
 
 ------------
 
