@@ -106,6 +106,7 @@ JDK5.0以后,JVM可以根据当前系统配置进行判断
 |-XX:+AggressiveOpts|加快编译|
 |-XX:-DisableExplicitGC|禁止调用System.gc()，但jvm的gc仍然有效|
 |-XX:+UseFastAccessorMethods|原始类型的快速优化|
+
 最后我们的启动参数就变成了这样↓
 ```bash
 @ECHO OFF
