@@ -24,8 +24,11 @@ MSI安装包安装：[点我转跳](#MSI安装板)
 
 4. 配置系统环境变量path（可选）
 我的电脑->属性->高级系统设置->环境变量->系统变量->选择“Path”->编辑->在后面添加MongoDB的bin目录例如“;D:\MongoDB\4.2\bin”(注意：新版本的Windows 10 不需要加;)不明白请跳过步骤4
+
 ![](images/mongodb/7.png)
+
 ![](images/mongodb/8.png)
+
 ![](images/mongodb/9.png)
 
 5. 在MongoDB安装路径下创建配置文件“mongo.config”
@@ -66,7 +69,9 @@ mongod --config "D:\MongoDB\4.2\mongo.config" --serviceName "MongoDB" --serviceD
 ```bash
 net start MongoDB
 ```
+
 ![](images/mongodb/14.png)
+
 看到“已经启动成功”就说明MongoDB已经正常启动了
 
 如果你还不放心你可以打开浏览器输入`127.0.0.1:27017`这里的端口就是你上面设置的
@@ -79,6 +84,7 @@ net start MongoDB
 
 1. 与免安装版相同到官网下载安装包：[https://www.mongodb.com/download-center/community](https://www.mongodb.com/download-center/community "https://www.mongodb.com/download-center/community")
 ![](images/mongodb/1.png)
+
 连网站都懒得打开的童鞋们呢可以直接点击链接下载：[https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.3-signed.msi](https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.3-signed.msi "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.3-signed.msi")
 
 下完应该是这么个图标的东西
