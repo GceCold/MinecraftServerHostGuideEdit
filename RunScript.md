@@ -126,7 +126,7 @@ JDK5.0以后,JVM可以根据当前系统配置进行判断
 java -server -Xincgc -Xmx8g -Xms4g -Xss512k -Xmn2g -Xincgc -XX:+AggressiveOpts -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:+UseFastAccessorMethods -XX:CMSFullGCsBeforeCompaction=5 -XX:ParallelGCThreads=8 -XX:CMSInitiatingOccupancyFraction=70 -XX:-DisableExplicitGC -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:SurvivorRatio=1 -jar 核心名.jar
 pause
 ```
-根据我这个配置算出的CMSInitiatingOccupancyFraction值应小于或等于77所以这里我直接设置了70
+根据我这个配置算出的CMSInitiatingOccupancyFraction值应小于或等于77所以这里我直接设置了70，大部分服务器可以直接设置70不需要改
 
 **MOD服**建议使用下面的脚本，将`-Xms`与`-Xmx`的大小设置相同
 ```bash
