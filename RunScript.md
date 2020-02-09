@@ -135,7 +135,7 @@ java -server -Xincgc -Xmx8g -Xms8g -Xss512k -Xmn2g -Xincgc -XX:+AggressiveOpts -
 pause
 ```
 
-想让你的服务器stop之后自动开服怎么做
+#### 如何让你的服务器stop之后自动开服呢？
 
 1. 只需要在脚本中在 `java -server ……` 的上一行加一个 `:开头的标签 `例如`:start`
 
