@@ -6,3 +6,5 @@
  [RunScript.md](https://github.com/gdenga/MinecraftServerHostGuideEdit/blob/master/RunScript.md "RunScript.md")
  
  [MongoDB.md](https://github.com/gdenga/MinecraftServerHostGuideEdit/blob/master/MongoDB.md "MongoDB.md")
+
+ [Sql.md](https://github.com/gdenga/MinecraftServerHostGuideEdit/blob/master/Sql.md "Sql.md")
