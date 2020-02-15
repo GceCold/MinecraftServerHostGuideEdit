@@ -20,9 +20,13 @@
 3. [MySQL的安装](#mysql%e7%9a%84%e5%ae%89%e8%a3%85)
     1. [MySQL5.7免安装版本的安装](#mysql%e7%9a%84%e5%ae%89%e8%a3%85)
        1. [MySQL5.7安装](#mysql57%e7%9a%84%e5%ae%89%e8%a3%85)
-       2. [MySQL5.7安装时常见错误总结及解决方法](#mysql57%e5%ae%89%e8%a3%85%e6%97%b6%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af%e6%80%bb%e7%bb%93%e5%8f%8a%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95)
-    2. MySQL8.0免安装版本的安装
-
+       2. [MySQL5.7卸载](#mysql57%e5%8d%b8%e8%bd%bd)
+       3. [MySQL5.7安装时常见错误总结及解决方法](#mysql57%e5%ae%89%e8%a3%85%e6%97%b6%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af%e6%80%bb%e7%bb%93%e5%8f%8a%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95) 
+    2. [MySQL8.0免安装版本的安装](#mysql80%e7%9a%84%e5%ae%89%e8%a3%85)
+       1. [MySQL8.0安装](#install8)
+       2. [MySQL8.0修改密码](#password8)
+       3. [MySQL8.0修改root用户远程访问权限](#host8)
+       4. [MySQL8.0连接访问问题](#error8)
 # 数据库的基本介绍
 ## 什么是数据库
 > 数据库是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织 的、有共享的、统一管理的数据集合。
@@ -39,7 +43,7 @@
 关系型数据库最典型的数据结构是表，由二维表及其之间的联系所组成的一个数据组织
 
 #### 优点：
-
+dd
 1. 易于维护：都是使用表结构，格式一致；
 2. 使用方便：SQL语言通用，可用于复杂查询；
 3. 复杂操作：支持SQL，可用于一个表以及多个表之间非常复杂的查询。
@@ -122,7 +126,7 @@
 
     我们只用得到配置文件的前21行
 
-```
+```yaml
 DataSource:
     # 你想使用哪种数据库来储存
     # 数据库类型: SQLITE MYSQL
@@ -156,7 +160,7 @@ DataSource:
    9. `mySQLTablename`存放数据的表名，可自定义修改，也可不做修改
 
 示例：
-```
+```yaml
     # 你想使用哪种数据库来储存
     # 数据库类型: SQLITE MYSQL
     backend: 'MYSQL'
@@ -239,55 +243,73 @@ MySQL5.7官方下载地址：
 
         ![](images/sql/3-1-4-1.png "images/sql/3-1-4-1.png")
 
-   3. 在MySQL根目录新建`my.ini`文件，内容如下，注意要修改自己的文件地址
-        ```
-        [mysqld]
-        #服务器端口，默认3306
-        port = 3306
-        #MySQL根目录(注意这里的都是`/`而不是`\`)
-        basedir=C:/mysql/5.7.28
-        #数据存储位置
-        datadir=C:/mysql/5.7.28/data 
-        #最大连接数
-        max_connections=200
-        #服务器字符集，无需修改
-        character-set-server=utf8
-        #默认引擎，无需修改
-        default-storage-engine=INNODB
-        #SQL模式，无需修改
-        sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
-        [mysql]
-        default-character-set=utf8
-        ```
+3. 在MySQL根目录新建`my.ini`文件，内容如下，注意要修改自己的文件地址
+    ```
+    [mysqld]
+    # 服务器端口，默认3306
+    port = 3306
+    # MySQL根目录(注意这里的都是`/`而不是`\`或者使用`\\`如果填错会刷错误)
+    basedir=C:/mysql/5.7.28
+    # 数据存储位置
+    datadir=C:/mysql/5.7.28/data 
+    # 最大连接数
+    max_connections=200
+    # 服务器默认字符集，无需修改
+    character-set-server=utf8
+    # 创建新表时将使用的默认存储引擎
+    default-storage-engine=INNODB
+    # SQL模式，无需修改
+    sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+    [mysql]
+    default-character-set=utf8
+    ```
 
-    4. 使用管理员权限打开DOS窗口(cmd)，也可以使用Powershell，但都需要以管理员权限运行
-        1. 输入`mysqld --initialize-insecure`，会自动生成一个无密码的root用户（可能有人要问了，为什么没密码，不要慌，下面会设置）MySQL会自动在你设置的数据库存储位置生成文件夹及数据
+4. 使用管理员权限打开DOS窗口(cmd)，也可以使用Powershell，但都需要以管理员权限运行
+    1. 输入`mysqld --initialize-insecure`，会自动生成一个无密码的root用户（可能有人要问了，为什么没密码，不要慌，下面会设置）MySQL会自动在你设置的数据库存储位置生成文件夹及数据
 
-            如果出现下面这种错误不要慌
+        如果出现下面这种错误不要慌
 
-            ![](images/sql/3-1-5.png "images/sql/3-1-5.png")
+        ![](images/sql/3-1-5.png "images/sql/3-1-5.png")
             
-            下载并安装`Visual C ++ Redistributable Package 2013`,官方下载地址： [https://www.microsoft.com/zh-CN/download/details.aspx?id=40784](https://www.microsoft.com/zh-CN/download/details.aspx?id=40784)
-            根据自己的系统版本下载对应版本的软件
+        下载并安装`Visual C ++ Redistributable Package 2013`,官方下载地址： [https://www.microsoft.com/zh-CN/download/details.aspx?id=40784](https://www.microsoft.com/zh-CN/download/details.aspx?id=40784)
+        根据自己的系统版本下载对应版本的软件
 
-        2. 再输入`mysqld --install`
-        3. 然后再输入`net start mysql`,启动mysql服务；对应的关闭命令为`net stop mysql`
+    2. 再输入`mysqld --install`
+    3. 然后再输入`net start mysql`,启动mysql服务；对应的关闭命令为`net stop mysql`
          
-            出现启动成功的字样就说明已经安装成功了，也意味着你马上就要成功了！
+        出现启动成功的字样就说明已经安装成功了，也意味着你马上就要成功了！
 
-            ![](images/sql/3-1-6.png "images/sql/3-1-6.png")
+        ![](images/sql/3-1-6.png "images/sql/3-1-6.png")
 
-    5. 启动成功后输入 `mysqladmin -u root password 新密码` 来修改密码
+5. 启动成功后输入 `mysqladmin -u root password 新密码` 来修改密码
 
-        我这里使用了"123456"的弱密码，请各位不要效仿
+    我这里使用了"123456"的弱密码，请各位不要效仿
 
-        ![](images/sql/3-1-7.png "images/sql/3-1-7.png")
+    ![](images/sql/3-1-7.png "images/sql/3-1-7.png")
 
-    6. 输入`mysql -uroot -p`登录root用户，测试你是否成功修改密码，执行该命令后会提示你`Enter password`输入密码，就可以输入你的新密码登录MySQL了
+6. 输入`mysql -uroot -p`登录root用户，测试你是否成功修改密码，执行该命令后会提示你`Enter password`输入密码，就可以输入你的新密码登录MySQL了
 
-        出现下面字符就说明登录成功了
+    出现下面字符就说明登录成功了
 
-        ![](images/sql/3-1-8.png "images/sql/3-1-8.png")
+    ![](images/sql/3-1-8.png "images/sql/3-1-8.png")
+
+### MySQL5.7卸载
+
+1. 使用管理员权限打开DOS窗口(cmd)，也可以使用Powershell
+2. 输入`net stop mysql`停止MySQL的运行
+3. 输入`mysqld -remove`或者`sc delete mysql`删除MySQL的服务器
+
+![](images/sql/3-1-14.png "images/sql/3-1-14.png")
+
+如果卸载后你又想安装上怎么办
+
+1. 使用管理员权限打开DOS窗口(cmd)，也可以使用Powershell
+2. 再输入`mysqld --install`安装成功即可
+3. `net start mysql`启动服务
+
+所以开头我说免安装版以后会非常的方便，只需带着你以前的MySQL文件夹，转到目录中的bin文件夹下执行`mysqld --install`就能使用，但是前提需要此电脑上已安装`Visual C ++ Redistributable Package 2013`
+
+![](images/sql/3-1-15.png "images/sql/3-1-15.png")
 
 ### MySQL5.7安装时常见错误总结及解决方法
 
@@ -354,3 +376,152 @@ MySQL5.7官方下载地址：
 ![](images/sql/3-1-13.png "images/sql/3-1-13.png")
 
 之后你就有权限访问你服务器里的数据库了
+
+## MySQL8.0的安装
+
+<span id="download8" />
+
+### 下载
+
+MySQL8.0官方下载地址：
+> https://dev.mysql.com/downloads/mysql/
+
+1. `Select Operating System`   选择`Microsoft Windows`
+2. 点击`Windows (x86, 64-bit), ZIP Archive`后的`Download`
+
+温馨提示：如果使用浏览器下载可以使用IDM等下载工具，如果速度还是非常慢请使用VPN
+
+![](images/sql/3-2-1.png "images/sql/3-2-1.png")
+
+
+<span id="install8" />
+
+### 安装与配置
+
+Mysql8.0的免安装版的配置前2步与5.7的配置方法相同所以在这里就不详细写了，直接从创建`my.ini`配置文件开始
+
+如果需要看前两步请[点我转跳](#mysql57%e7%9a%84%e5%ae%89%e8%a3%85)
+
+3. 在MySQL根目录新建`my.ini`文件，内容如下，注意要修改自己的文件地址
+   
+    **注意：**在MySQL 8.0中，默认的身份验证插件已从`mysql_native_password`更改为 `caching_sha2_password`，并且`'root'@'localhost'`默认使用`caching_sha2_password`。
+
+   ```
+   [mysqld]
+        # 服务器端口，默认3306
+        port=3306
+        # MySQL根目录(注意这里的都是`/`而不是`\`或者使用`\\`如果填错会刷错误)
+        basedir=C:/mysql/5.7.28
+        # 数据存储位置
+        datadir=E:\\software\\mysql\\mysql-8.0.11-winx64\\Data
+        # 允许最大连接数
+        max_connections=200
+        # 允许连接失败的次数
+        max_connect_errors=10
+        # 服务器默认字符集，无需修改
+        character-set-server=utf8
+        # 创建新表时将使用的默认存储引擎
+        default-storage-engine=INNODB
+        # 默认使用“mysql_native_password”插件认证
+        default_authentication_plugin=mysql_native_password
+    [mysql]
+        # 设置mysql客户端默认字符集
+        default-character-set=utf8
+    [client]
+        # 设置mysql客户端连接服务端时默认使用的端口
+        port=3306
+        default-character-set=utf8
+   ```
+
+4. 使用管理员权限打开DOS窗口(cmd)，也可以使用Powershell，但都需要以管理员权限运行
+   1. 输入`mysqld --initialize --console`初始化数据库，执行完后MySQL会生成一个随机的初始root密码
+
+    类似这样的一个信息（图中红圈圈的就是初始的随机密码）：`qGdy+.pl<7uj`这个是我的随机密码，每个人的初始密码都不同（不含首位空格）在没有更改密码前，需要记住这个密码，后续登录需要用到。
+
+    ![](images/sql/3-2-2.png "images/sql/3-2-2.png")
+
+    如果你忘记了初始密码或者手贱直接关掉了，请删掉你在`my.ini`中`datadir`（数据存储位置）选项的目录重头进行步骤4！
+
+    参考：[https://dev.mysql.com/doc/refman/8.0/zh-CN/data-directory-initialization.html](https://dev.mysql.com/doc/refman/8.0/zh-CN/data-directory-initialization.html)
+
+    如果出现类似下面这些错误不要慌
+
+    ![](images/sql/3-2-3.png "images/sql/3-2-3.png")
+
+    ![](images/sql/3-2-3-1.png "images/sql/3-2-3-1.png")
+            
+    下载并安装`Visual C ++ Redistributable Package 2015`,官方下载地址： [https://www.microsoft.com/zh-CN/download/details.aspx?id=48145](https://www.microsoft.com/zh-CN/download/details.aspx?id=48145)
+    
+    根据自己的系统版本下载对应版本的软件并安装即可
+
+    1. 再输入`mysqld --install`安装MySQL服务
+    2. 然后再输入`net start mysql`,启动mysql服务；对应的关闭命令为`net stop mysql`
+
+    ![](images/sql/3-2-4.png "images/sql/3-2-4.png")
+
+<span id="password8" />
+
+### 修改密码
+
+1. 打开一个DOS窗口(cmd)或者PowerShell
+2. 输入`mysql -u root -p`，回车后会提示你输入密码，密码就是上面初始化生成的，如果你忘记了初始密码或者手贱直接关掉了，请删掉你在`my.ini`中`datadir`（数据存储位置）选项的目录重头进行步骤4！
+   
+    ![](images/sql/3-2-5.png "images/sql/3-2-5.png")
+
+3. 之后输入`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';`注意修改你的新密码要用单引号括起来
+   
+4. 输入 `flush privileges;`刷新保存
+   
+5. `exit;`或`quit;`退出mysql
+
+注意图中红圈地方为新密码，请自行修改
+
+![](images/sql/3-2-6.png "images/sql/3-2-6.png")
+
+至此密码就修改完成了
+
+<span id="host8" />
+
+### 修改root用户远程访问权限
+
+注意8.0的开放方式与5.7的命令不同
+
+如果你想在你自己电脑上连接你服务器上的MySQL数据库可能会无法连接
+
+当然我这里不建议外网可以访问root用户
+
+原因1：首先你的服务器需要开放你设置的MySQL数据库端口
+
+原因2：root用户未开放远程访问权限
+
+解决方法：
+1. 打开DOS窗口(cmd)或者PowerShell
+2. 输入`mysql -uroot -p`按回车，输入密码，回车
+3. 输入`use mysql;`切换到名为mysql的数据库下
+4. 输入`update user set host = "%" where user = "root";`
+5. 输入 `flush privileges;`刷新权限
+6. `exit;`或`quit;`退出mysql
+
+![](images/sql/3-2-7.png "images/sql/3-2-8.png")
+
+之后你就有权限访问你服务器里的数据库了
+
+<span id="error8" />
+
+### MySQL8.0连接访问问题
+
+远程访问数据库的可视化工具比较多如：Navicat、SQLyog、MySQL workbench 等，我这里使用 Navicat
+
+输入MySQL服务器地址、用户名和密码，报`2059`错误，这是因为 MySql8.0 版本 和 5.x 的加密规则不一样，而现在仍有少部分可视化工具仍然只支持旧的加密方式，可能**有插件连接时也会报`2059`的错误**
+
+我们在安装的时候，如果你使用了我上方贴出的`my.ini`作为模板修改就应该不会出现此问题，但也不排除仍有极少部分用户仍然无法连接，所以我们下方给出解决方法
+
+这里我们可以直接修改加密规则
+
+1. 打开DOS窗口(cmd)或者PowerShell
+2. 输入`mysql -uroot -p`按回车，输入密码，回车
+3. 输入`use mysql;`切换到名为mysql的数据库下
+4. 输入`ALTER USER 'root'@'localhost' IDENTIFIED BY '你当前的root用户密码' PASSWORD EXPIRE NEVER;`
+5. 输入`ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '输入新的root用户密码';`当然也可以选择直接输入你原来的密码
+6. 输入 `flush privileges;`刷新权限
+7. `exit;`或`quit;`退出mysql
