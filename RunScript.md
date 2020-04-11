@@ -91,8 +91,8 @@ pause
 
 **Survivor Ratio Sizing**
 > The `SurvivorRatio` parameter controls the size of the two survivor spaces. For example,`-XX:SurvivorRatio=6`sets the ratio between each survivor space and eden to be 1:6, each survivor space will be one eighth of the young generation. The default for Solaris is 32. If survivor spaces are too small, copying collection overflows directly into the old generation. If survivor spaces are too large, they will be empty. At each GC, the JVM determines the number of times an object can be copied before it is tenured, called the tenure threshold. This threshold is chosen to keep the survivor space half full.
-Use the option `-XX:+PrintTenuringDistribution` to show the threshold and ages of the objects in the new generation. It is useful for observing the lifetime distribution of an application.
-引用: [https://docs.oracle.com/cd/E19159-01/819-3681/abeil/index.html](https://docs.oracle.com/cd/E19159-01/819-3681/abeil/index.html "https://docs.oracle.com/cd/E19159-01/819-3681/abeil/index.html")
+> Use the option `-XX:+PrintTenuringDistribution` to show the threshold and ages of the objects in the new generation. It is useful for observing the lifetime distribution of an application.
+> 引用: [https://docs.oracle.com/cd/E19159-01/819-3681/abeil/index.html](https://docs.oracle.com/cd/E19159-01/819-3681/abeil/index.html "https://docs.oracle.com/cd/E19159-01/819-3681/abeil/index.html")
 
 `-XX:G1ReservePercent=15`G1会预留一部分内存，制造一个假天花板，防止晋升失败(to-space)的情况，默认值是10
 
