@@ -16,7 +16,7 @@ Minecraft开服离不开启动脚本(作者使用`JDK-11.0.6 x64`与测试`JDK-1
 
 ## 什么是参数
 
-在这里我直接使用一张图片来表明什么是参数
+在这里我直接使用一张图片来说明什么是参数
 
 ![](images/runscript/1.png "images/runscript/1.png")
 
@@ -167,7 +167,3 @@ java -server -Xms4g -Xmx8g -XX:+AggressiveOpts -XX:+UseFastAccessorMethods -XX:+
 cls
 goto start
 ```
-
-
-
-本文部分来自：[https://www.oracle.com/technetwork/java/hotspotfaq-138619.html](https://www.oracle.com/technetwork/java/hotspotfaq-138619.html "https://www.oracle.com/technetwork/java/hotspotfaq-138619.html")
